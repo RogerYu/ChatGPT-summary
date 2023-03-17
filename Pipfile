@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 pypdf2 = "*"
-docx2pdf = "*"
+docx2txt = "*"
 
 [dev-packages]
 
