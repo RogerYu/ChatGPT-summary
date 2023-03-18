@@ -3,6 +3,10 @@ import requests
 import PyPDF2
 import docx2txt
 from io import BytesIO
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def read_pdf(file):
     pdf_reader = PyPDF2.PdfFileReader(file)
@@ -34,10 +38,17 @@ def summarize_text(text):
     }
 
     # API endpoint URL
-    url = 'https://chatgpt-api.shn.hk:443/v1/'
+    url = 'https://api.openai.com/v1/chat/completions'
+
+    API_KEY = os.getenv("OPENAI_API_KEY")
+
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': f'Bearer {API_KEY}'
+    }
 
     # Make API request
-    response = requests.post(url, json=data)
+    response = requests.post(url, json=data, headers=headers)
 
     # Get response text from API response
     response_text = response.json()['choices'][0]['message']['content']
