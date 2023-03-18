@@ -49,6 +49,8 @@ def summarize_text(text):
 
     # Make API request
     response = requests.post(url, json=data, headers=headers)
+    
+    print('response', response)
 
     # Get response text from API response
     response_text = response.json()['choices'][0]['message']['content']
