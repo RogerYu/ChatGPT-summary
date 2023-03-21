@@ -49,7 +49,7 @@ def summarize_text(text):
 
     # Make API request
     response = requests.post(url, json=data, headers=headers)
-    
+
     # Get response text from API response
     response_text = response.json()['choices'][0]['message']['content']
 
@@ -57,7 +57,7 @@ def summarize_text(text):
 
 # Streamlit app
 def app():
-    st.title("中金计算机 - 纪要/文章速度整理器")
+    st.title("中金计算机 - 纪要/文章速读整理器")
 
     st.write("仅供测试体验，谢绝商用。功能有费用，请手下留情。")
 
