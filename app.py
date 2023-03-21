@@ -23,10 +23,10 @@ def read_text_file(file):
 
 def summarize_text(text):
     # System message containing instructions
-    system_string = "you are a helpful assistant. you help summarize text; the summarization must be in bullet point. the summarization shall be in Chinese; of length 1/4 of the original article. try to keep all the numbers; they are very important! do not simply shorten each sentence. try to understand the entire paragraph and provide a coherent summary."
+    system_string = "you are a helpful assistant. you help summarize text. The summarization must be in bullet point -- it cannot be one single plain paragraph! Don't put a title -- only the bullet points! The summarization shall be in Chinese; of length 1/4 of the original article. try to keep all the numbers; they are very important! do not simply shorten each sentence. try to understand the entire paragraph and provide a coherent summary."
 
     # User message with input text from the form
-    user_string = f"please help me summarize the below text; the summarization must be in bullet point. the summarization shall be in Chinese; of length 1/4 of the original article. try to keep all the numbers; they are very important! do not simply shorten each sentence. try to understand the entire paragraph and provide a coherent summary. {text}"
+    user_string = f"please help me summarize the below text. The summarization must be in bullet point -- it cannot be one single plain paragraph! Don't put a title -- only the bullet points! The summarization shall be in Chinese; of length 1/4 of the original article. try to keep all the numbers; they are very important! do not simply shorten each sentence. try to understand the entire paragraph and provide a coherent summary. {text}"
 
     # API request data
     data = {
@@ -57,7 +57,9 @@ def summarize_text(text):
 
 # Streamlit app
 def app():
-    st.title("ChatGPT Text Summarization")
+    st.title("中金计算机 - 纪要/文章速度整理器")
+
+    st.write("仅供测试体验，谢绝商用。功能有费用，请手下留情。")
 
     # File uploader
     uploaded_file = st.file_uploader("Upload a PDF or Word document", type=["pdf", "docx", "txt"])
@@ -80,10 +82,23 @@ def app():
 
     # Submit button
     if st.button("Summarize"):
-        with st.spinner("Summarizing..."):
-            summary = summarize_text(text)
-            # Display output
-            st.markdown(summary, unsafe_allow_html=True)
+        all_summary = ''
+        cnt = 1
+        while len(text):
+            with st.spinner(f"Summarizing...part {cnt}"):
+                print('cur text len is', len(text))
+
+                max_len = min(2000, len(text))
+                cur_text = text[:max_len]
+                text = text[max_len:]
+
+                summary = summarize_text(cur_text)
+                all_summary += summary
+
+                cnt += 1
+
+        # Display output
+        st.markdown(all_summary, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     app()
