@@ -7,7 +7,7 @@ name = "pypi"
 pypdf2 = "*"
 docx2txt = "*"
 python-dotenv = "*"
-pdfminer.six = "*"
+pdfminer = "*"
 
 [dev-packages]
 
