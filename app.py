@@ -13,11 +13,10 @@ load_dotenv()
 
 
 def read_pdf(file):
-    with open(file, 'rb') as f:
-        pdf_reader = PdfReader(f)
-        text = ""
-        for page in range(len(pdf_reader.pages)):
-            text += pdf_reader.pages[page].text
+    pdf_reader = PdfFileReader(file)
+    text = ""
+    for page in range(pdf_reader.getNumPages()):
+        text += pdf_reader.getPage(page).extractText()
     return text
 
 
