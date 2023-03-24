@@ -6,7 +6,11 @@ import io
 from io import BytesIO
 import os
 from dotenv import load_dotenv
-!pip install pdfminer.six
+
+import subprocess
+
+subprocess.call(['pip', 'install', 'pdfminer'])
+
 
 load_dotenv()
 
