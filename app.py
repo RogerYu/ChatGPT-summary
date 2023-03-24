@@ -2,11 +2,18 @@ import streamlit as st
 import requests
 import PyPDF2
 import docx2txt
+import io
 from io import BytesIO
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
+
+from pdfminer.high_level import extract_text
+
+def read_pdf(file):
+    text = extract_text(file)
+    return text
 
 def read_pdf(file):
     pdf_reader = PyPDF2.PdfFileReader(file)
@@ -68,7 +75,8 @@ def app():
     if uploaded_file is not None:
         file_type = uploaded_file.type
         if file_type == "application/pdf":
-            text = read_pdf(uploaded_file)
+            file_bytes = uploaded_file.read()
+            text = read_pdf(io.BytesIO(file_bytes))
         elif file_type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
             text = read_docx(uploaded_file)
         elif file_type == "text/plain":
