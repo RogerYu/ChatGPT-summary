@@ -1,48 +1,37 @@
-# ChatGPT-summary
-程序说明
-这是一个用于纪要/文章速读整理的 Streamlit 程序，用于上传 PDF、Word 文档或文本文件，并对其中的内容进行自动化文本摘要。程序包括三个部分，文本读取、文本摘要和 Streamlit 应用。本程序采用 OpenAI 的 API 进行文本摘要。
+#中金计算机 - 纪要/文章速读整理器
 
-程序依赖
-streamlit
+这是一个基于 Streamlit 的应用程序，它可以将上传的 PDF、Word 文档或文本文件进行自动摘要，以便更快地阅读和理解。
+
+##功能说明
+该应用程序提供以下功能：
+
+文件上传：支持上传 PDF、Word 文档或文本文件。
+文本摘要：使用 OpenAI 的 GPT-3.5 模型，将文本内容进行自动摘要。
+摘要输出：将自动摘要的结果以无序列表的形式输出。
+
+##使用方法
+访问网站 https://share.streamlit.io/sixty-north/streamlit-book。
+点击页面上方的“Open in Streamlit”按钮，打开应用程序界面。
+点击“Upload a PDF or Word document”按钮，选择要上传的文件。
+点击“Summarize”按钮，等待摘要结果的生成。
+查看摘要结果，并进行必要的修改。
+
+
+##环境要求
+该应用程序需要安装以下依赖项：
+
+Streamlit
 requests
 PyPDF2
 docx2txt
 python-dotenv
-openai
-使用方法
-在本地环境中安装上述依赖库。
-
-下载程序代码并将其保存在本地文件夹中。
-
-在程序根目录下创建一个名为 ".env" 的文件，将您在 OpenAI 中获得的 API 密钥复制到该文件中：
-
-makefile
+可以通过 pip 命令安装以上依赖项：
+bash
 Copy code
-OPENAI_API_KEY=<your_api_key>
-打开终端并进入程序所在的目录。
+pip install streamlit requests PyPDF2 docx2txt python-dotenv
 
-在终端中输入以下命令以运行程序：
-
-arduino
-Copy code
-streamlit run app.py
-在 Streamlit 应用中，单击 "Upload a PDF or Word document" 按钮上传 PDF、Word 文档或文本文件。
-
-如果上传的是 PDF 或 Word 文档，程序将自动提取文件中的文本内容。
-
-在 "Enter your text here" 文本框中输入要摘要的内容。
-
-单击 "Summarize" 按钮以获得文本的摘要。
-
-程序将自动将文本分段，并对每个段落进行摘要处理，最终将所有段落的摘要合并为一个整体。
-
-摘要结果将会显示在应用界面的文本框中。
-
-注意事项
-本程序仅供测试体验，严禁商用。
-本程序采用 OpenAI 的 API 进行文本摘要，需要 OpenAI 的 API 密钥方能正常工作。
-本程序需要访问互联网才能正常工作。
-上传的文件大小应不超过 200 MB。
-上传的文件类型必须是 PDF、Word 文档或文本文件，其他类型的文件不被支持。
-摘要结果可能存在一定程度的错误和失真，不可完全代替人工摘要。
-本程序不提供任何形式的保证，用户需自行承担使用风险。
+##注意事项
+该应用程序仅供测试体验，禁止商用。
+该应用程序使用的 GPT-3.5 模型需要支付费用，使用时请遵守相关条款。
+摘要结果仅供参考，不代表原文准确性。
+如果上传的文件类型不受支持，将会提示“Unsupported file type”错误信息。
