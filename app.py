@@ -6,17 +6,21 @@ import io
 from io import BytesIO
 import os
 from dotenv import load_dotenv
+from PyPDF4 import PdfFileReader, PdfReader
+
 
 
 load_dotenv()
 
 
 def read_pdf(file):
-    pdf_reader = PyPDF2.PdfReader(file)
-    text = ""
-    for page in range(len(pdf_reader)):
-        text += pdf_reader[page].Text
+    with open(file, 'rb') as f:
+        pdf_reader = PdfReader(f)
+        text = ""
+        for page in range(len(pdf_reader.pages)):
+            text += pdf_reader.pages[page].text
     return text
+
 
 def read_docx(file):
     return docx2txt.process(file)
