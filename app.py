@@ -6,8 +6,7 @@ import io
 from io import BytesIO
 import os
 from dotenv import load_dotenv
-from PyPDF4 import PdfFileReader, PdfReader
-
+from PyPDF4 import PdfFileReader
 
 
 load_dotenv()
