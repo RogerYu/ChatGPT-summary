@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import PyPDF2
 import docx2txt
+import pdfminer.six
 import io
 from io import BytesIO
 import os
@@ -10,6 +11,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+from pdfminer import high_level
 from pdfminer.high_level import extract_text
 
 def read_pdf(file):
